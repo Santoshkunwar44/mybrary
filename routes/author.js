@@ -4,14 +4,21 @@ const Author = require("../model/auther");
 
 // ALL AUTHOR ROUTE
 
-router.get("/", async(req, res) => {
-    try{
-        const fetchedAuthors =await Author.find({});
-        res.render("authors/index",{authors:fetchedAuthors});
-    }catch{
-        res.redirect("/")
-    }   
-
+router.get("/", async (req, res) => {
+  let searchOptions = {};
+  if (req.query.name !== null && req.query.name !== "") {
+    searchOptions.name = new RegExp(req.query.name, "i");
+  }
+  try {
+    const fetchedAuthors = await Author.find(searchOptions);
+    res.render("authors/index", {
+      authors: fetchedAuthors,
+      searchOptions: req.query,
+    });
+    console.log(fetchedAuthors)
+  } catch {
+    res.redirect("/");
+  }
 });
 
 //NEW AUTHOR ROUTE
