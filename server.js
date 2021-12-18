@@ -14,7 +14,7 @@ app.use(express.static("public"));
 // app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 // const DB =
-//   "mongodb+srv://santosh:admin2@cluster0.tme9l.mongodb.net/mybrary?retryWrites=true&w=majority";
+//   "mongodb+srv://santosh:admin2@cluster0.tme9l.mongodb.net/mybrary?retryWrites=true&w=majority";santosh
 
 mongoose
   .connect(process.env.DATABASE_URL, {
